@@ -1,26 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import HomeContainer from "./containers/HomeContainer";
+import HotelsContainer from "./containers/HotelsContainer";
+import HotelContainer from "./containers/HotelContainer";
+import LoginContainer from "./containers/LoginContainer";
+import Nav from './components/core/Nav';
+import Cookies from "js-cookie";
+import Api from "./utils/Api";
 
-class App extends Component {
+
+class App extends React.Component {
+
+  componentWillMount() {
+    const user = Cookies.getJSON("user");
+    if (user) {
+      Api.setUser(user);
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <Nav  />
+        <div style={{marginTop:"85px"}}>          
+          
+          {/* <HomeContainer /> */}
+          <Route path="/" exact component={HomeContainer} />
+
+          {/* <HotelsContainer /> */}
+          <Route path="/hotels" component={HotelsContainer} />
+
+          <Route path="/hotel/:id" component={HotelContainer} />
+
+          <Route path="/login" component={LoginContainer} />
+
+
+        </div>
+      </Router>
     );
   }
 }

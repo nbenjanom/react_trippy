@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+nav a{
+    color: white;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+.heart:hover{
+    cursor: pointer;
+}
